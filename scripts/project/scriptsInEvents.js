@@ -5,7 +5,20 @@
 {
 	const scriptsInEvents = {
 
-		async Mainevents_Event122_Act1(runtime, localVars)
+		async Mainevents_Event125_Act2(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			    typeof gameManager.onShowRewardedVideoAds === 'function'
+			) {
+			    try {
+			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Mainevents_Event132_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			    typeof gameManager.onCheckRewardedVideoAds === 'function'
@@ -18,7 +31,7 @@
 			}
 		},
 
-		async Mainevents_Event123_Act1(runtime, localVars)
+		async Mainevents_Event133_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -41,7 +54,7 @@
 			}
 		},
 
-		async Menu_Event3_Act7(runtime, localVars)
+		async Menu_Event3_Act10(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -52,10 +65,14 @@
 				     if (result.status === 0) {
 					 
 			        // completely watched the ad. can give reward
-					runtime.globalVars.HIGHSCORE = runtime.globalVars.HIGHSCORE + runtime.globalVars.REWARD;
+					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
+					//runtime.globalVars.Variable1 = add(localVars.firstNumber, localVars.secondNumber);
+					runtime.globalVars.reward = runtime.globalVars.SCORE + 1550;
+			
+			
 			    } else {
 			        // did not watch the ad completely. no reward
-					runtime.globalVars.HIGHSCORE = runtime.globalVars.HIGHSCORE;
+					runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
 			    }
 				   
 				   })
@@ -83,7 +100,7 @@
 			}
 		},
 
-		async Menu_Event12_Act1(runtime, localVars)
+		async Menu_Event11_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -94,7 +111,7 @@
 			}
 		},
 
-		async Menu_Event14_Act1(runtime, localVars)
+		async Menu_Event13_Act1(runtime, localVars)
 		{
 			
 			if (typeof gameManager !== 'undefined' && 
