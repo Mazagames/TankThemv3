@@ -54,7 +54,24 @@
 			}
 		},
 
-		async Menu_Event3_Act10(runtime, localVars)
+		async Menu_Event1_Act1(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        gameManager.onGameStart()
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event4_Act7(runtime, localVars)
+		{
+			runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
+			
+		},
+
+		async Menu_Event4_Act10(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -67,12 +84,12 @@
 			        // completely watched the ad. can give reward
 					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
 					//runtime.globalVars.Variable1 = add(localVars.firstNumber, localVars.secondNumber);
-					runtime.globalVars.reward = runtime.globalVars.SCORE + 1550;
+					runtime.globalVars.reward = runtime.globalVars.SCORE + 3000;
 			
 			
 			    } else {
 			        // did not watch the ad completely. no reward
-					runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
+				//runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
 			    }
 				   
 				   })
@@ -84,7 +101,7 @@
 			
 		},
 
-		async Menu_Event5_Act5(runtime, localVars)
+		async Menu_Event6_Act5(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -94,50 +111,6 @@
 			        }
 			        var data = JSON.stringify(obj)
 			        gameManager.onTrack('On Game Over', data)
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event11_Act1(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined') {
-			    try {
-			        gameManager.onGameStart()
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event13_Act1(runtime, localVars)
-		{
-			
-			if (typeof gameManager !== 'undefined' && 
-			    typeof gameManager.onCheckRewardedVideoAds === 'function'
-			) {
-			    try {
-				
-			        cc.game.on('rewardAdsExist', 
-					
-					function(result){
-				     if (result.status === 0) {
-					 runtime.objects.Sprite.destroy;
-			        // show sprite
-					//debugger
-			    } else {
-			        // hide sprite
-					
-			    }
-				   
-				   })
-				   
-					
-					
-			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
-					
-					
 			    } catch (e) {
 			        gameManager.onError(e.stack.toString())
 			    }
