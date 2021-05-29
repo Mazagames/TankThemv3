@@ -54,7 +54,7 @@
 			}
 		},
 
-		async Menu_Event1_Act1(runtime, localVars)
+		async Menu_Event3_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -65,7 +65,7 @@
 			}
 		},
 
-		async Menu_Event4_Act5(runtime, localVars)
+		async Menu_Event6_Act5(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			    typeof gameManager.onCheckRewardedVideoAds === 'function'
@@ -78,13 +78,13 @@
 			}
 		},
 
-		async Menu_Event4_Act8(runtime, localVars)
+		async Menu_Event6_Act8(runtime, localVars)
 		{
 			runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
 			
 		},
 
-		async Menu_Event4_Act11(runtime, localVars)
+		async Menu_Event6_Act11(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -117,7 +117,7 @@
 			
 		},
 
-		async Menu_Event6_Act5(runtime, localVars)
+		async Menu_Event8_Act5(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -133,7 +133,7 @@
 			}
 		},
 
-		async Menu_Event13_Act1(runtime, localVars)
+		async Menu_Event15_Act1(runtime, localVars)
 		{
 			
 			if (typeof gameManager !== 'undefined' && 
