@@ -5,19 +5,6 @@
 {
 	const scriptsInEvents = {
 
-		async Mainevents_Event128_Act2(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			    typeof gameManager.onShowRewardedVideoAds === 'function'
-			) {
-			    try {
-			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
 		async Mainevents_Event135_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
@@ -48,6 +35,19 @@
 			    try {
 			        var score = JSON.stringify(obj)
 			        gameManager.onGameOver(score)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Mainevents_Event136_Act2(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			    typeof gameManager.onShowRewardedVideoAds === 'function'
+			) {
+			    try {
+			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
 			    } catch (e) {
 			        gameManager.onError(e.stack.toString())
 			    }

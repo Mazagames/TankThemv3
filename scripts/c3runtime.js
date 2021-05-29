@@ -3246,9 +3246,9 @@ newY);wi.SetBboxChanged()}}else if(this._axes===1){if(wi.GetX()!==newX){wi.SetX(
 		C3.Plugins.LocalStorage.Exps.ItemValue,
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.System.Cnds.TriggerOnce,
-		C3.ScriptsInEvents.Mainevents_Event128_Act2,
 		C3.ScriptsInEvents.Mainevents_Event135_Act1,
 		C3.ScriptsInEvents.Mainevents_Event136_Act1,
+		C3.ScriptsInEvents.Mainevents_Event136_Act2,
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.Plugins.System.Acts.SetTimescale,
@@ -3262,6 +3262,7 @@ newY);wi.SetBboxChanged()}}else if(this._axes===1){if(wi.GetX()!==newX){wi.SetX(
 		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.Plugins.Spritefont2.Cnds.CompareInstanceVar,
+		C3.Plugins.System.Cnds.LayerVisible,
 		C3.ScriptsInEvents.Menu_Event1_Act1,
 		C3.Plugins.LocalStorage.Acts.ClearStorage,
 		C3.ScriptsInEvents.Menu_Event4_Act7,
@@ -3709,6 +3710,7 @@ newY);wi.SetBboxChanged()}}else if(this._axes===1){if(wi.GetX()!==newX){wi.SetX(
 		() => "ground_hp_text",
 		() => "air_turret_dmg",
 		() => "air_turret_hp",
+		() => "UI",
 		() => "SOUND CONTROL2",
 		() => "rewarded video"
 	];
