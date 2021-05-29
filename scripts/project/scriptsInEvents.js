@@ -65,21 +65,37 @@
 			}
 		},
 
-		async Menu_Event4_Act7(runtime, localVars)
+		async Menu_Event4_Act5(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			    typeof gameManager.onCheckRewardedVideoAds === 'function'
+			) {
+			    try {
+			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event4_Act8(runtime, localVars)
 		{
 			runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
 			
 		},
 
-		async Menu_Event4_Act10(runtime, localVars)
+		async Menu_Event4_Act11(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
 			
 			) {
+			
 			    try {
 			       cc.game.on('onAdPlayed', function(result){
+				   
 				     if (result.status === 0) {
+					 
 					 
 			        // completely watched the ad. can give reward
 					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
@@ -111,6 +127,39 @@
 			        }
 			        var data = JSON.stringify(obj)
 			        gameManager.onTrack('On Game Over', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event13_Act1(runtime, localVars)
+		{
+			
+			if (typeof gameManager !== 'undefined' && 
+			    typeof gameManager.onCheckRewardedVideoAds === 'function'
+			) {
+			    try {
+				
+			        cc.game.on('rewardAdsExist', 
+					
+					function(result){
+				     if (result.status === 0) {
+				
+			        // show sprite
+					//debugger
+			    } else {
+			        // hide sprite
+					
+			    }
+				   
+				   })
+				   
+					
+					
+			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
+					
+					
 			    } catch (e) {
 			        gameManager.onError(e.stack.toString())
 			    }
