@@ -5,7 +5,7 @@
 {
 	const scriptsInEvents = {
 
-		async Mainevents_Event125_Act2(runtime, localVars)
+		async Mainevents_Event128_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			    typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -18,7 +18,7 @@
 			}
 		},
 
-		async Mainevents_Event132_Act1(runtime, localVars)
+		async Mainevents_Event135_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			    typeof gameManager.onCheckRewardedVideoAds === 'function'
@@ -31,7 +31,7 @@
 			}
 		},
 
-		async Mainevents_Event133_Act1(runtime, localVars)
+		async Mainevents_Event136_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
