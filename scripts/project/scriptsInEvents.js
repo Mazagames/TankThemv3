@@ -54,37 +54,7 @@
 			}
 		},
 
-		async Menu_Event3_Act1(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined') {
-			    try {
-			        gameManager.onGameStart()
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event6_Act5(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			    typeof gameManager.onCheckRewardedVideoAds === 'function'
-			) {
-			    try {
-			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event6_Act8(runtime, localVars)
-		{
-			runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
-			
-		},
-
-		async Menu_Event6_Act11(runtime, localVars)
+		async Upgrade_Event44_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -117,7 +87,77 @@
 			
 		},
 
-		async Menu_Event8_Act5(runtime, localVars)
+		async Upgrade_Event45(runtime, localVars)
+		{
+			
+		},
+
+		async Menu_Event3_Act1(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        gameManager.onGameStart()
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event6_Act5(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			    typeof gameManager.onCheckRewardedVideoAds === 'function'
+			) {
+			    try {
+			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event6_Act11(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			typeof gameManager.onShowRewardedVideoAds === 'function'
+			
+			) {
+			
+			    try {
+			       cc.game.on('onAdPlayed', function(result){
+				   
+				     if (result.status === 0) {
+					 
+					 rutime.rewardnew(runtime)
+					 runtime.rewardnew
+					 rewardnew(runtime)
+			        // completely watched the ad. can give reward
+					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
+					//runtime.globalVars.Variable1 = add(localVars.firstNumber, localVars.secondNumber);
+					runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
+			
+			
+			    } else {
+			        // did not watch the ad completely. no reward
+				//runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
+			    }
+				   
+				   })
+			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+			
+		},
+
+		async Menu_Event7_Act1(runtime, localVars)
+		{
+			runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
+			
+		},
+
+		async Menu_Event9_Act5(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -133,7 +173,7 @@
 			}
 		},
 
-		async Menu_Event15_Act1(runtime, localVars)
+		async Menu_Event16_Act1(runtime, localVars)
 		{
 			
 			if (typeof gameManager !== 'undefined' && 
