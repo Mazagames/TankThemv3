@@ -54,7 +54,7 @@
 			}
 		},
 
-		async Upgrade_Event44_Act1(runtime, localVars)
+		async Upgrade_Event45_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -87,7 +87,7 @@
 			
 		},
 
-		async Upgrade_Event45(runtime, localVars)
+		async Upgrade_Event46(runtime, localVars)
 		{
 			
 		},
@@ -135,6 +135,7 @@
 					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
 					//runtime.globalVars.Variable1 = add(localVars.firstNumber, localVars.secondNumber);
 					runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
+			  runtime.setReturnValue(rewardnew());
 			
 			
 			    } else {
