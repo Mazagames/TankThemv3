@@ -144,8 +144,10 @@
 			       cc.game.on('onAdPlayed', function(result){
 				   
 				     if (result.status === 0) {
+					   runtime.setReturnValue(rewardnew());
 					 
-					 rewardnew()
+					rewardnew(runtime);
+					 
 					 //rutime.rewardnew(runtime);
 					 //runtime.rewardnew();
 					 //rewardnew(runtime);
@@ -153,7 +155,7 @@
 					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
 					//runtime.globalVars.Variable1 = add(localVars.firstNumber, localVars.secondNumber);
 					//runtime.globalVars.reward = runtime.globalVars.SCORE + 3000;
-			  //runtime.setReturnValue(rewardnew());
+			
 			//runtime.callFunction.rewardnew(rutime);
 			
 			
