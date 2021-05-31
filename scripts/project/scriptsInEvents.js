@@ -144,9 +144,12 @@
 			       cc.game.on('onAdPlayed', function(result){
 				   
 				     if (result.status === 0) {
-					   runtime.setReturnValue(rewardnew());
+					
+					c3_callFunction("rewardnew",[])
+					
+					//   runtime.setReturnValue(rewardnew());
 					 
-					rewardnew(runtime);
+				//	rewardnew(runtime);
 					 
 					 //rutime.rewardnew(runtime);
 					 //runtime.rewardnew();
