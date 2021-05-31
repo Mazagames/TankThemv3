@@ -54,6 +54,22 @@
 			}
 		},
 
+		async Mainevents_Event144_Act4(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        var obj = {
+			            score: score,
+			            timestamp: timestamp
+			        }
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gamePause', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
 		async Upgrade_Event45_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
@@ -124,18 +140,21 @@
 			) {
 			
 			    try {
+				
 			       cc.game.on('onAdPlayed', function(result){
 				   
 				     if (result.status === 0) {
 					 
-					 rutime.rewardnew(runtime)
-					 runtime.rewardnew
-					 rewardnew(runtime)
+					 rewardnew()
+					 //rutime.rewardnew(runtime);
+					 //runtime.rewardnew();
+					 //rewardnew(runtime);
 			        // completely watched the ad. can give reward
 					// runtime.globalVars.SCORE = runtime.globalVars.SCORE + runtime.globalVars.REWARD;
 					//runtime.globalVars.Variable1 = add(localVars.firstNumber, localVars.secondNumber);
-					runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
-			  runtime.setReturnValue(rewardnew());
+					//runtime.globalVars.reward = runtime.globalVars.SCORE + 3000;
+			  //runtime.setReturnValue(rewardnew());
+			//runtime.callFunction.rewardnew(rutime);
 			
 			
 			    } else {
@@ -154,7 +173,7 @@
 
 		async Menu_Event7_Act1(runtime, localVars)
 		{
-			runtime.globalVars.reward = runtime.globalVars.SCORE + 2000;
+			runtime.globalVars.reward = runtime.globalVars.SCORE + 2500;
 			
 		},
 
