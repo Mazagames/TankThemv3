@@ -101,7 +101,7 @@
 			}
 		},
 
-		async Mainevents_Event231_Act1(runtime, localVars)
+		async Mainevents_Event232_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'

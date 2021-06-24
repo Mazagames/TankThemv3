@@ -3246,7 +3246,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.Plugins.System.Acts.AddVar,
 		C3.Behaviors.Platform.Cnds.IsOnFloor,
 		C3.ScriptsInEvents.Mainevents_Event230_Act2,
-		C3.ScriptsInEvents.Mainevents_Event231_Act1,
+		C3.ScriptsInEvents.Mainevents_Event232_Act1,
 		C3.Plugins.Sprite.Acts.StartAnim,
 		C3.Plugins.Sprite.Cnds.OnAnimFinished,
 		C3.Plugins.Mouse.Cnds.IsOverObject,
