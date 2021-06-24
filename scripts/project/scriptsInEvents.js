@@ -5,20 +5,7 @@
 {
 	const scriptsInEvents = {
 
-		async Game_Event128_Act10(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			    typeof gameManager.onShowRewardedVideoAds === 'function'
-			) {
-			    try {
-			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Game_Event136_Act2(runtime, localVars)
+		async Mainevents_Event36_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -28,9 +15,9 @@
 			       gameID: data.gameId,
 			        roomID: data.roomId,
 			        userID: data.userId,
-					score: runtime.globalVars.bestcoin,
+					score: runtime.globalVars.SCORE,
 			        highScore: runtime.globalVars.HIGHSCORE,
-			        info: encryption.getInfo(runtime.globalVars.bestcoin, 10, 1)
+			        info: encryption.getInfo(runtime.globalVars.SCORE, 10, 1)
 			    }
 			    try {
 			        var score = JSON.stringify(obj)
@@ -41,144 +28,7 @@
 			}
 		},
 
-		async Game_Event144_Act4(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined') {
-			    try {
-			        var obj = {
-			            score: runtime.globalVars.bestcoin,
-			            timestamp: timestamp
-			        }
-			        var data = JSON.stringify(obj)
-			        gameManager.onTrack('gamePause', data)
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Game_Event135_Act1(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			    typeof gameManager.onCheckRewardedVideoAds === 'function'
-			) {
-			    try {
-			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event6_Act1(runtime, localVars)
-		{
-			runtime.globalVars.reward = runtime.globalVars.SCORE + 1500;
-			
-		},
-
-		async Upgrade_Event45_Act1(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			typeof gameManager.onShowRewardedVideoAds === 'function'
-			
-			) {
-			
-			    try {
-			       cc.game.on('onAdPlayed', function(result){
-				   
-				     if (result.status === 0) {
-					 		
-					 runtime.globalVars.SCORE += 2001; 
-			
-			    } else {
-			        // did not watch the ad completely. no reward
-				//runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
-					 runtime.globalVars.SCORE += 1; 
-			    }
-				   
-				   })
-			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-			
-		},
-
-		async Upgrade_Event46(runtime, localVars)
-		{
-			
-		},
-
-		async Menu_Event3_Act1(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined') {
-			    try {
-			        gameManager.onGameStart()
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event7_Act5(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			    typeof gameManager.onCheckRewardedVideoAds === 'function'
-			) {
-			    try {
-			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-		},
-
-		async Menu_Event7_Act9(runtime, localVars)
-		{
-			if (typeof gameManager !== 'undefined' && 
-			typeof gameManager.onShowRewardedVideoAds === 'function'
-			
-			) {
-			
-			    try {
-				
-			       cc.game.on('onAdPlayed', function(result){
-				   
-				     if (result.status === 0) {
-					
-				
-			
-			runtime.globalVars.SCORE = runtime.globalVars.nore;
-			
-				
-				// runtime.globalVars.SCORE += 4000;
-				
-				
-					
-			    } else {
-			        // did not watch the ad completely. no reward
-				//runtime.globalVars.SCORE = runtime.globalVars.nore;
-				
-				runtime.globalVars.SCORE = runtime.globalVars.reward;
-			    }
-				   
-				   })
-			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
-			    } catch (e) {
-			        gameManager.onError(e.stack.toString())
-			    }
-			}
-			
-		},
-
-		async Menu_Event7_Act13(runtime, localVars)
-		{
-				const instance = runtime.objects.boomreward.getFirstInstance();
-			instance.x += 50;
-		},
-
-		async Menu_Event9_Act5(runtime, localVars)
+		async Mainevents_Event43_Act15(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -194,33 +44,164 @@
 			}
 		},
 
-		async Menu_Event16_Act1(runtime, localVars)
+		async Mainevents_Event48_Act4(runtime, localVars)
 		{
+			if (typeof gameManager !== 'undefined') {
 			
+				
+				 gameManager.onGameStart()
+				var data = gameManager.onGameInit()
+				
+			       
+					
+					 data = JSON.parse(data)
+					 
+			     var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+					type: "Pause",
+					score: runtime.globalVars.SCORE,
+			        highScore: runtime.globalVars.HIGHSCORE,
+					
+					}
+							
+					 try {
+					 
+			      var data = JSON.stringify(obj);
+				
+			          gameManager.onTrack("gamePause", data)
+			    } catch (e) {
+				
+			        gameManager.onError(e.stack.toString())
+			    }
+				
+			    
+			}
+		},
+
+		async Mainevents_Event230_Act2(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+			        type: "over"
+			    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameExit', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Mainevents_Event231_Act1(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			typeof gameManager.onShowRewardedVideoAds === 'function'
+			
+			) {
+			
+			    try {
+			       cc.game.on('onAdPlayed', function(result){
+				   
+				     if (result.status === 0) {
+					 		
+					 runtime.globalVars.SCORE *= 4; 
+				
+					 (runtime.callFunction('gameover', [0,1]))
+			
+			    } else {
+			        // did not watch the ad completely. no reward
+				//runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
+					 runtime.globalVars.SCORE = runtime.globalVars.SCORE; 
+					  
+					  (runtime.callFunction('gameover', [0,1]))
+			    }
+				   
+				   })
+			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+			
+		},
+
+		async Upgrade_Event38_Act1(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			typeof gameManager.onShowRewardedVideoAds === 'function'
+			
+			) {
+			
+			    try {
+			       cc.game.on('onAdPlayed', function(result){
+				   
+				     if (result.status === 0) {
+					 		
+					 runtime.globalVars.missileon += 1; 
+			
+			    } else {
+			        // did not watch the ad completely. no reward
+				//runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
+					 runtime.globalVars.missileon += 0; 
+			    }
+				   
+				   })
+			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+			
+		},
+
+		async Menu_Event1_Act4(runtime, localVars)
+		{
 			if (typeof gameManager !== 'undefined' && 
 			    typeof gameManager.onCheckRewardedVideoAds === 'function'
 			) {
 			    try {
-				
-			        cc.game.on('rewardAdsExist', 
-					
-					function(result){
-				     if (result.status === 0) {
-				
-			        // show sprite
-					//debugger
-			    } else {
-			        // hide sprite
-					
-			    }
-				   
-				   })
-				   
-					
-					
 			        gameManager.onCheckRewardedVideoAds('rewardAdsExist')
-					
-					
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event16_Act1(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        gameManager.onGameStart()
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event16_Act2(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+			        startType: "new"
+			    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameStart', data)
 			    } catch (e) {
 			        gameManager.onError(e.stack.toString())
 			    }
