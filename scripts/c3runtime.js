@@ -3229,6 +3229,10 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.Plugins.Sprite.Cnds.IsOnScreen,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.System.Exps.int,
+		C3.Plugins.Sprite.Acts.Spawn,
+		C3.Plugins.Sprite.Acts.SetWidth,
+		C3.Plugins.Sprite.Acts.MoveToTop,
+		C3.Plugins.Sprite.Acts.SetPosToObject,
 		C3.Behaviors.Platform.Acts.SimulateControl,
 		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
 		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
@@ -3238,34 +3242,34 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.Plugins.Sprite.Acts.SetScale,
 		C3.Behaviors.Sin.Acts.SetEnabled,
 		C3.Behaviors.Bullet.Acts.SetAngleOfMotion,
-		C3.Plugins.Sprite.Acts.MoveToTop,
 		C3.Plugins.Sprite.Cnds.IsMirrored,
 		C3.Plugins.Sprite.Cnds.PickByUID,
 		C3.Plugins.Sprite.Cnds.IsOutsideLayout,
-		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Behaviors.Platform.Cnds.IsOnFloor,
-		C3.ScriptsInEvents.Mainevents_Event230_Act2,
-		C3.ScriptsInEvents.Mainevents_Event232_Act1,
+		C3.ScriptsInEvents.Mainevents_Event232_Act2,
+		C3.ScriptsInEvents.Mainevents_Event232_Act3,
+		C3.ScriptsInEvents.Mainevents_Event234_Act1,
 		C3.Plugins.Sprite.Acts.StartAnim,
 		C3.Plugins.Sprite.Cnds.OnAnimFinished,
 		C3.Plugins.Mouse.Cnds.IsOverObject,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Spritefont2.Cnds.CompareInstanceVar,
-		C3.ScriptsInEvents.Upgrade_Event38_Act1,
+		C3.ScriptsInEvents.Upgrade_Event40_Act1,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.System.Cnds.LayerVisible,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.ScriptsInEvents.Menu_Event1_Act4,
 		C3.Plugins.LocalStorage.Acts.ClearStorage,
+		C3.ScriptsInEvents.Menu_Event3_Act4,
+		C3.ScriptsInEvents.Menu_Event3_Act5,
 		C3.Plugins.Browser.Cnds.IsPortraitLandscape,
 		C3.Plugins.Audio.Acts.Preload,
 		C3.Plugins.Audio.Acts.SetMasterVolume,
-		C3.ScriptsInEvents.Menu_Event16_Act1,
-		C3.ScriptsInEvents.Menu_Event16_Act2,
-		C3.Behaviors.Platform.Acts.SetEnabled,
-		C3.Plugins.Sprite.Acts.SetPosToObject
+		C3.ScriptsInEvents.Menu_Event18_Act1,
+		C3.ScriptsInEvents.Menu_Event18_Act2,
+		C3.Behaviors.Platform.Acts.SetEnabled
 		];
 	};
 	self.C3_JsPropNameTable = [
@@ -3379,6 +3383,8 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		{Sprite7: 0},
 		{Texts6: 0},
 		{bunkerexlode: 0},
+		{LifeBar2: 0},
+		{LifeBar3: 0},
 		{dead: 0},
 		{Pause: 0},
 		{Complete: 0},
@@ -3405,7 +3411,8 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		{BunkerHP: 0},
 		{missileon: 0},
 		{AirTurretHP: 0},
-		{GroundTurretHP: 0}
+		{GroundTurretHP: 0},
+		{FTUE: 0}
 	];
 }
 
@@ -3648,14 +3655,22 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 			return () => f0(4, 2, 3, 1, 5);
 		},
 		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(3, 1, 5);
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpInstVar() / 2);
 		},
-		() => "TARGETS",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() - 50);
 		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 10);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(3, 1, 5);
+		},
+		() => "TARGETS",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 50);
@@ -3748,6 +3763,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		() => 36,
 		() => "STORAGE2",
 		() => "GET COINTS2",
+		() => "ftueplayed",
 		() => "BUNKER STORAGE2",
 		() => "GROUND TURRET STORAGE2",
 		() => "AIR TURRET STORAGE2",

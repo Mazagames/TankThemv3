@@ -80,7 +80,7 @@
 			}
 		},
 
-		async Mainevents_Event230_Act2(runtime, localVars)
+		async Mainevents_Event232_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -101,7 +101,25 @@
 			}
 		},
 
-		async Mainevents_Event232_Act1(runtime, localVars)
+		async Mainevents_Event232_Act3(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        var obj = {
+			            score: score,
+			            timestamp: timestamp,
+						type: "over"
+						
+			        }
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameExit', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Mainevents_Event234_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -134,7 +152,7 @@
 			
 		},
 
-		async Upgrade_Event38_Act1(runtime, localVars)
+		async Upgrade_Event40_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -176,7 +194,45 @@
 			}
 		},
 
-		async Menu_Event16_Act1(runtime, localVars)
+		async Menu_Event3_Act4(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+			        startType: "new"
+			    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameStart', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event3_Act5(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        var obj = {
+			            score: score,
+			            timestamp: timestamp,
+						startType: "new"
+			        }
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameStart', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Menu_Event18_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -187,7 +243,7 @@
 			}
 		},
 
-		async Menu_Event16_Act2(runtime, localVars)
+		async Menu_Event18_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
