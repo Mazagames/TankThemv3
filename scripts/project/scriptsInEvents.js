@@ -66,6 +66,42 @@
 			}
 		},
 
+		async Mainevents_Event37_Act1(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       userID: data.userId,
+			        type: "over"
+			    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameExit', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Mainevents_Event37_Act2(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			    try {
+			        var obj = {
+			            score: score,
+			            timestamp: timestamp,
+						type: "over"
+			        }
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameExit', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
 		async Mainevents_Event43_Act15(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {

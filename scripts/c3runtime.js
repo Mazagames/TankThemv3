@@ -3188,6 +3188,8 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.ScriptsInEvents.Mainevents_Event36_Act1,
 		C3.ScriptsInEvents.Mainevents_Event36_Act2,
 		C3.ScriptsInEvents.Mainevents_Event36_Act3,
+		C3.ScriptsInEvents.Mainevents_Event37_Act1,
+		C3.ScriptsInEvents.Mainevents_Event37_Act2,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
