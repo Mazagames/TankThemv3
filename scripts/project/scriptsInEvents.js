@@ -5,7 +5,7 @@
 {
 	const scriptsInEvents = {
 
-		async Mainevents_Event36_Act1(runtime, localVars)
+		async Mainevents_Event45_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -26,7 +26,7 @@
 			}
 		},
 
-		async Mainevents_Event36_Act2(runtime, localVars)
+		async Mainevents_Event45_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -49,7 +49,7 @@
 			}
 		},
 
-		async Mainevents_Event36_Act3(runtime, localVars)
+		async Mainevents_Event45_Act3(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -66,7 +66,7 @@
 			}
 		},
 
-		async Mainevents_Event37_Act1(runtime, localVars)
+		async Mainevents_Event46_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -85,7 +85,7 @@
 			}
 		},
 
-		async Mainevents_Event37_Act2(runtime, localVars)
+		async Mainevents_Event46_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -102,7 +102,7 @@
 			}
 		},
 
-		async Mainevents_Event43_Act15(runtime, localVars)
+		async Mainevents_Event52_Act15(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -118,7 +118,7 @@
 			}
 		},
 
-		async Mainevents_Event48_Act4(runtime, localVars)
+		async Mainevents_Event57_Act4(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			
@@ -154,7 +154,7 @@
 			}
 		},
 
-		async Mainevents_Event232_Act1(runtime, localVars)
+		async Mainevents_Event243_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -175,7 +175,7 @@
 			}
 		},
 
-		async Mainevents_Event232_Act2(runtime, localVars)
+		async Mainevents_Event243_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -193,7 +193,7 @@
 			}
 		},
 
-		async Mainevents_Event234_Act1(runtime, localVars)
+		async Mainevents_Event245_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -214,7 +214,7 @@
 			}
 		},
 
-		async Mainevents_Event234_Act2(runtime, localVars)
+		async Mainevents_Event245_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -232,7 +232,7 @@
 			}
 		},
 
-		async Mainevents_Event234_Act3(runtime, localVars)
+		async Mainevents_Event245_Act3(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -244,7 +244,7 @@
 				   
 				     if (result.status === 0) {
 					 		
-					 runtime.globalVars.SCORE *= 4; 
+					 runtime.globalVars.SCORE *= 2; 
 				
 					 (runtime.callFunction('gameover', [0,1]))
 			
