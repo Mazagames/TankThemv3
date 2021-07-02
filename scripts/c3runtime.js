@@ -2919,6 +2919,617 @@ Vendor(){return navigator.vendor},BatteryLevel(){return 1},BatteryTimeLeft(){ret
 WindowInnerWidth(){return this._runtime.GetCanvasManager().GetLastWidth()},WindowInnerHeight(){return this._runtime.GetCanvasManager().GetLastHeight()},WindowOuterWidth(){return this._windowOuterWidth},WindowOuterHeight(){return this._windowOuterWidth}}};
 
 
+"use strict";
+
+{
+    C3.Plugins.GameAnalytics = class GameAnalyticsPlugin extends C3.SDKPluginBase
+    {
+        constructor(opts)
+        {
+            super(opts);
+        }
+
+        Release()
+        {
+            super.Release();
+        }
+    };
+}
+
+
+"use strict";
+
+{
+    C3.Plugins.GameAnalytics.Type = class GameAnalyticsType extends C3.SDKTypeBase
+    {
+        constructor(objectClass)
+        {
+            super(objectClass);
+        }
+
+        Release()
+        {
+            super.Release();
+        }
+
+        OnCreate()
+        {
+        }
+    };
+}
+
+
+"use strict";
+
+{
+    C3.Plugins.GameAnalytics.Instance = class GameAnalyticsInstance extends C3.SDKInstanceBase
+    {
+        constructor(inst, properties)
+        {
+            super(inst);
+
+            // Initialise object properties
+            this._build = "";
+            this._customUserId = "";
+            this._enableManualSessionHandling = false;
+            this._enableInfoLog = false;
+            this._enableVerboseLog = false;
+            this._autoDetectAppVersion = false;
+            this._gameKeyBrowser = "";
+            this._secretKeyBrowser = "";
+            this._gameKeyAndroid = "";
+            this._secretKeyAndroid = "";
+            this._gameKeyIOS = "";
+            this._secretKeyIOS = "";
+
+            this._customDimensions01 = [];
+            this._customDimensions02 = [];
+            this._customDimensions03 = [];
+            this._resourceCurrencies = [];
+            this._resourceItemTypes = [];
+
+            if (properties)        // note properties may be null in some cases
+            {
+                this._build = properties[0];
+                this._customUserId = properties[1];
+                this._enableManualSessionHandling = properties[2];
+                this._enableInfoLog = properties[3];
+                this._enableVerboseLog = properties[4];
+                this._autoDetectAppVersion = properties[5];
+                this._gameKeyBrowser = properties[6];
+                this._secretKeyBrowser = properties[7];
+                this._gameKeyAndroid = properties[8];
+                this._secretKeyAndroid = properties[9];
+                this._gameKeyIOS = properties[10];
+                this._secretKeyIOS = properties[11];
+            }
+        }
+
+        Release()
+        {
+            super.Release();
+        }
+
+        SaveToJson()
+        {
+            return {
+                // data to be saved for savegames
+            };
+        }
+
+        LoadFromJson(o)
+        {
+            // load state for savegames
+        }
+    };
+}
+
+
+"use strict";
+
+{
+    C3.Plugins.GameAnalytics.Cnds =
+    {
+        isRemoteConfigsReady(functionName)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["isRemoteConfigsReady"] == "function")
+            {
+                var callback = function(result) {
+                    if(functionName && globalThis["c2_callFunction"]) {
+                        globalThis["c2_callFunction"](functionName, [result ? 1 : 0]);
+                    }
+                }
+                globalThis["GameAnalytics"]["isRemoteConfigsReady"](callback);
+                return false;
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                return globalThis["gameanalytics"]["GameAnalytics"]["isRemoteConfigsReady"]();
+            }
+            else
+            {
+                console.log("isRemoteConfigsReady: GameAnalytics object not found");
+                return false;
+            }
+        }
+    };
+}
+
+
+"use strict";
+
+{
+    C3.Plugins.GameAnalytics.Acts =
+    {
+        addAvailableCustomDimension01(dimension)
+        {
+            this._customDimensions01.push(dimension);
+        },
+
+        addAvailableCustomDimension02(dimension)
+        {
+            this._customDimensions02.push(dimension);
+        },
+
+        addAvailableCustomDimension03(dimension)
+        {
+            this._customDimensions03.push(dimension);
+        },
+
+        addAvailableResourceCurrency(currency)
+        {
+            this._resourceCurrencies.push(currency);
+        },
+
+        addAvailableResourceItemType(itemType)
+        {
+            this._resourceItemTypes.push(itemType);
+        },
+
+        initialize()
+        {
+            var VERSION = "3.0.11";
+
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["initialize"] == "function")
+            {
+                var ga = globalThis["GameAnalytics"];
+
+                if(this._enableInfoLog)
+                {
+                    ga["setEnabledInfoLog"](true);
+                }
+                if(this._enableVerboseLog)
+                {
+                    ga["setEnabledVerboseLog"](true);
+                }
+                if(this._enableManualSessionHandling)
+                {
+                    ga["setEnabledManualSessionHandling"](true);
+                }
+
+                if(this._customDimensions01.length > 0)
+                {
+                    ga["configureAvailableCustomDimensions01"](this._customDimensions01);
+                }
+                if(this._customDimensions02.length > 0)
+                {
+                    ga["configureAvailableCustomDimensions02"](this._customDimensions02);
+                }
+                if(this._customDimensions03.length > 0)
+                {
+                    ga["configureAvailableCustomDimensions03"](this._customDimensions03);
+                }
+                if(this._resourceCurrencies.length > 0)
+                {
+                    ga["configureAvailableResourceCurrencies"](this._resourceCurrencies);
+                }
+                if(this._resourceItemTypes.length > 0)
+                {
+                    ga["configureAvailableResourceItemTypes"](this._resourceItemTypes);
+                }
+
+                ga["configureBuild"](this._build);
+
+                if(this._autoDetectAppVersion)
+                {
+                    ga["configureAutoDetectAppVersion"](true);
+                }
+
+                var sdkVersion = "construct " + VERSION;
+                var gameKey = globalThis["device"]["platform"] === "Android" ? this._gameKeyAndroid : this._gameKeyIOS;
+                var secretKey = globalThis["device"]["platform"] === "Android" ? this._secretKeyAndroid : this._secretKeyIOS;
+
+                ga["initialize"]({
+                    "gameKey": gameKey,
+                    "secretKey": secretKey,
+                    "sdkVersion": sdkVersion
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                var ga = globalThis["gameanalytics"]["GameAnalytics"];
+
+                if(this._enableInfoLog)
+                {
+                    ga["setEnabledInfoLog"](true);
+                }
+                if(this._enableVerboseLog)
+                {
+                    ga["setEnabledVerboseLog"](true);
+                }
+                if(this._enableManualSessionHandling)
+                {
+                    ga["setEnabledManualSessionHandling"](true);
+                }
+
+                if(this._customDimensions01.length > 0)
+                {
+                    ga["configureAvailableCustomDimensions01"](this._customDimensions01);
+                }
+                if(this._customDimensions02.length > 0)
+                {
+                    ga["configureAvailableCustomDimensions02"](this._customDimensions02);
+                }
+                if(this._customDimensions03.length > 0)
+                {
+                    ga["configureAvailableCustomDimensions03"](this._customDimensions03);
+                }
+                if(this._resourceCurrencies.length > 0)
+                {
+                    ga["configureAvailableResourceCurrencies"](this._resourceCurrencies);
+                }
+                if(this._resourceItemTypes.length > 0)
+                {
+                    ga["configureAvailableResourceItemTypes"](this._resourceItemTypes);
+                }
+
+                ga["configureBuild"](this._build);
+
+                ga["configureSdkGameEngineVersion"]("construct " + VERSION);
+
+                ga["initialize"](this._gameKeyBrowser, this._secretKeyBrowser);
+            }
+            else
+            {
+                console.log("initialize: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addBusinessEvent(currency, amount, itemType, itemId, cartType)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addBusinessEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addBusinessEvent"]({
+                    "currency": currency,
+                    "amount": amount,
+                    "itemType": itemType,
+                    "itemId": itemId,
+                    "cartType": cartType
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addBusinessEvent"](currency, amount, itemType, itemId, cartType);
+            }
+            else
+            {
+                console.log("addBusinessEvent: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addResourceEvent(flowType, currency, amount, itemType, itemId)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addResourceEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addResourceEvent"]({
+                    "flowType": flowType,
+                    "currency": currency,
+                    "amount": amount,
+                    "itemType": itemType,
+                    "itemId": itemId
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addResourceEvent"](flowType, currency, amount, itemType, itemId);
+            }
+            else
+            {
+                console.log("addResourceEvent: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addProgressionEvent(progressionStatus, progression01, progression02, progression03)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addProgressionEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addProgressionEvent"]({
+                    "progressionStatus": progressionStatus,
+                    "progression01": progression01,
+                    "progression02": progression02,
+                    "progression03": progression03
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addProgressionEvent"](progressionStatus, progression01, progression02, progression03);
+            }
+            else
+            {
+                console.log("addProgressionEvent: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addProgressionEventWithScore(progressionStatus, progression01, progression02, progression03, score)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addProgressionEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addProgressionEvent"]({
+                    "progressionStatus": progressionStatus,
+                    "progression01": progression01,
+                    "progression02": progression02,
+                    "progression03": progression03,
+                    "score": score
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addProgressionEvent"](progressionStatus, progression01, progression02, progression03, score);
+            }
+            else
+            {
+                console.log("addProgressionEventWithScore: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addDesignEvent(eventId)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addDesignEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addDesignEvent"]({
+                    "eventId": eventId
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addDesignEvent"](eventId);
+            }
+            else
+            {
+                console.log("addDesignEvent: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addDesignEventWithValue(eventId, value)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addDesignEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addDesignEvent"]({
+                    "eventId": eventId,
+                    "value": value
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addDesignEvent"](eventId, value);
+            }
+            else
+            {
+                console.log("addDesignEventWithValue: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        addErrorEvent(severity, message)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["addErrorEvent"] == "function")
+            {
+                globalThis["GameAnalytics"]["addErrorEvent"]({
+                    "severity": severity,
+                    "message": message
+                });
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["addErrorEvent"](severity, message);
+            }
+            else
+            {
+                console.log("addErrorEvent: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        setEnabledEventSubmission(flag)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["setEnabledEventSubmission"] == "function")
+            {
+                globalThis["GameAnalytics"]["setEnabledEventSubmission"](flag ? true : false);
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["setEnabledEventSubmission"](flag ? true : false);
+            }
+            else
+            {
+                console.log("setEnabledEventSubmission: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        setEnabledManualSessionHandling(flag)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["setEnabledManualSessionHandling"] == "function")
+            {
+                globalThis["GameAnalytics"]["setEnabledManualSessionHandling"](flag ? true : false);
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["setEnabledManualSessionHandling"](flag ? true : false);
+            }
+            else
+            {
+                console.log("setEnabledManualSessionHandling: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        setCustomDimension01(dimension)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["setCustomDimension01"] == "function")
+            {
+                globalThis["GameAnalytics"]["setCustomDimension01"](dimension);
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["setCustomDimension01"](dimension);
+            }
+            else
+            {
+                console.log("setCustomDimension01: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        setCustomDimension02(dimension)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["setCustomDimension02"] == "function")
+            {
+                globalThis["GameAnalytics"]["setCustomDimension02"](dimension);
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["setCustomDimension02"](dimension);
+            }
+            else
+            {
+                console.log("setCustomDimension02: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        setCustomDimension03(dimension)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["setCustomDimension03"] == "function")
+            {
+                globalThis["GameAnalytics"]["setCustomDimension03"](dimension);
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["setCustomDimension03"](dimension);
+            }
+            else
+            {
+                console.log("setCustomDimension03: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        startSession()
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["startSession"] == "function")
+            {
+                globalThis["GameAnalytics"]["startSession"]();
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["startSession"]();
+            }
+            else
+            {
+                console.log("startSession: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        endSession()
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["endSession"] == "function")
+            {
+                globalThis["GameAnalytics"]["endSession"]();
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                globalThis["gameanalytics"]["GameAnalytics"]["endSession"]();
+            }
+            else
+            {
+                console.log("endSession: GameAnalytics object not found");
+                return;
+            }
+        },
+
+        configureBuild(buildNumber)
+        {
+            this._build = buildNumber;
+        }
+    };
+}
+
+
+"use strict";
+
+{
+    C3.Plugins.GameAnalytics.Exps =
+    {
+        getRemoteConfigsValueAsString(key, defaultValue, functionName)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["getRemoteConfigsValueAsString"] == "function")
+            {
+                var callback = function(result) {
+                    if(functionName && globalThis["c2_callFunction"]) {
+                        globalThis["c2_callFunction"](functionName, [result]);
+                    }
+                }
+                globalThis["GameAnalytics"]["getRemoteConfigsValueAsString"]({
+                    "key": key,
+                    "defaultValue": defaultValue
+                }, callback);
+                return "";
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                return globalThis["gameanalytics"]["GameAnalytics"]["getRemoteConfigsValueAsString"](key, defaultValue);
+            }
+            else
+            {
+                console.log("getRemoteConfigsValueAsString: GameAnalytics object not found");
+                return "";
+            }
+        },
+
+        getRemoteConfigsContentAsString(functionName)
+        {
+            if(typeof globalThis["GameAnalytics"] !== "undefined" && typeof globalThis["GameAnalytics"]["getRemoteConfigsContentAsString"] == "function")
+            {
+                var callback = function(result) {
+                    if(functionName && globalThis["c2_callFunction"]) {
+                        globalThis["c2_callFunction"](functionName, [result]);
+                    }
+                }
+                globalThis["GameAnalytics"]["getRemoteConfigsContentAsString"](callback);
+                return "";
+            }
+            else if(typeof globalThis["gameanalytics"] !== "undefined" && typeof globalThis["gameanalytics"]["GameAnalytics"] != "undefined")
+            {
+                return globalThis["gameanalytics"]["GameAnalytics"]["getRemoteConfigsContentAsString"]();
+            }
+            else
+            {
+                console.log("endSession: GameAnalytics object not found");
+                return "";
+            }
+        }
+    };
+}
+
+
 'use strict';{const C3=self.C3;C3.Behaviors.jumpthru=class JumpthruBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}};
 
 
@@ -3168,6 +3779,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.Behaviors.DragnDrop,
 		C3.Behaviors.Flash,
 		C3.Plugins.Browser,
+		C3.Plugins.GameAnalytics,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.System.Cnds.CompareVar,
@@ -3189,6 +3801,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.ScriptsInEvents.Mainevents_Event45_Act1,
 		C3.ScriptsInEvents.Mainevents_Event45_Act2,
 		C3.ScriptsInEvents.Mainevents_Event45_Act3,
+		C3.Plugins.GameAnalytics.Acts.endSession,
 		C3.ScriptsInEvents.Mainevents_Event46_Act1,
 		C3.ScriptsInEvents.Mainevents_Event46_Act2,
 		C3.Plugins.System.Acts.CreateObject,
@@ -3204,6 +3817,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.Plugins.System.Cnds.ForEach,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.ScriptsInEvents.Mainevents_Event52_Act15,
+		C3.Plugins.GameAnalytics.Acts.addProgressionEvent,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.Plugins.System.Acts.SetTimescale,
 		C3.ScriptsInEvents.Mainevents_Event57_Act4,
@@ -3262,11 +3876,15 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Spritefont2.Cnds.CompareInstanceVar,
 		C3.ScriptsInEvents.Upgrade_Event40_Act1,
+		C3.Plugins.GameAnalytics.Acts.addDesignEvent,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.System.Cnds.LayerVisible,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.ScriptsInEvents.Menum_Event1_Act3,
+		C3.Plugins.GameAnalytics.Acts.initialize,
+		C3.Plugins.GameAnalytics.Acts.setEnabledEventSubmission,
+		C3.Plugins.GameAnalytics.Acts.startSession,
 		C3.Plugins.LocalStorage.Acts.ClearStorage,
 		C3.ScriptsInEvents.Menum_Event3_Act4,
 		C3.ScriptsInEvents.Menum_Event3_Act5,
@@ -3393,6 +4011,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		{LifeBar3: 0},
 		{LifeBar4: 0},
 		{game_background_: 0},
+		{GameAnalytics: 0},
 		{dead: 0},
 		{Pause: 0},
 		{Complete: 0},
@@ -3615,12 +4234,13 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		() => 0.3,
 		() => "GAME COMPLETE",
 		() => "Complete menu",
+		() => "game won",
+		() => "",
 		() => "PAUSE MENU",
 		() => "PauseMenu",
 		() => "SOUND CONTROL",
 		() => "Player Turret",
 		() => 95,
-		() => "",
 		() => 100,
 		() => "Attack",
 		() => "Attack2",
@@ -3777,6 +4397,8 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		() => 1696,
 		() => 516,
 		() => "score multply",
+		() => 1849,
+		() => 64,
 		() => "HOVER EFFECT",
 		() => 142,
 		() => 36,
@@ -3817,6 +4439,8 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		() => "ground_hp_text",
 		() => "air_turret_dmg",
 		() => "air_turret_hp",
+		() => "watched ads for turret",
+		() => "skip",
 		() => "unlock",
 		() => 1333,
 		() => 242,
@@ -3828,6 +4452,7 @@ this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}Ge
 		() => "sound2",
 		() => "BG",
 		() => "NEWBG",
+		() => "title",
 		() => "highscore2",
 		() => "SOUND CONTROL2",
 		() => "sound",
