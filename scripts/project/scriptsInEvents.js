@@ -5,7 +5,7 @@
 {
 	const scriptsInEvents = {
 
-		async Mainevents_Event48_Act2(runtime, localVars)
+		async Mainevents_Event42_Act3(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -36,7 +36,7 @@
 			}
 		},
 
-		async Mainevents_Event48_Act4(runtime, localVars)
+		async Mainevents_Event42_Act5(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -60,7 +60,7 @@
 			}
 		},
 
-		async Mainevents_Event49_Act2(runtime, localVars)
+		async Mainevents_Event43_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -91,7 +91,7 @@
 			}
 		},
 
-		async Mainevents_Event49_Act4(runtime, localVars)
+		async Mainevents_Event43_Act4(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -115,7 +115,7 @@
 			}
 		},
 
-		async Mainevents_Event64_Act4(runtime, localVars)
+		async Mainevents_Event58_Act4(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			
@@ -152,7 +152,7 @@
 			}
 		},
 
-		async Mainevents_Event248_Act1(runtime, localVars)
+		async Mainevents_Event93_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -173,7 +173,7 @@
 			}
 		},
 
-		async Mainevents_Event249_Act2(runtime, localVars)
+		async Mainevents_Event94_Act7(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -194,7 +194,7 @@
 			}
 		},
 
-		async Mainevents_Event249_Act3(runtime, localVars)
+		async Mainevents_Event94_Act8(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -216,7 +216,7 @@
 			}
 		},
 
-		async Mainevents_Event250_Act1(runtime, localVars)
+		async Mainevents_Event95_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			typeof gameManager.onShowRewardedVideoAds === 'function'
@@ -228,8 +228,10 @@
 				   
 				     if (result.status === 0) {
 					 		
-					 runtime.globalVars.SCORE *= 2; 
+					// runtime.globalVars.SCORE *= 2; 
 					 runtime.globalVars.adGameEndClaimed += 1; 
+					 runtime.globalVars.highscoredoublehua += 1; 
+					 
 					
 					 runtime.globalVars.adsound = 0; 
 					 // (runtime.globalVars.SCORE >= runtime.globalVars.HIGHSCORE) == runtime.globalVars.HIGHSCORE;
@@ -368,7 +370,7 @@
 			
 		},
 
-		async Menum_Event18_Act1(runtime, localVars)
+		async Title_Event19_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			    try {
@@ -379,7 +381,7 @@
 			}
 		},
 
-		async Menum_Event18_Act2(runtime, localVars)
+		async Title_Event19_Act2(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
 			var data = gameManager.onGameInit()
@@ -400,7 +402,7 @@
 			}
 		},
 
-		async Menum_Event18_Act3(runtime, localVars)
+		async Title_Event19_Act3(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined' && 
 			    typeof gameManager.onCheckRewardedVideoAds === 'function'
