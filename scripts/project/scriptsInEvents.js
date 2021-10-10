@@ -1,9 +1,7 @@
-"use strict";
 
 
 
-{
-	const scriptsInEvents = {
+const scriptsInEvents = {
 
 		async Mainevents_Event42_Act3(runtime, localVars)
 		{
@@ -370,6 +368,100 @@
 			
 		},
 
+		async Upgrade_Event41_Act3(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+					position : "start"
+				    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameAdShown', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Upgrade_Event41_Act4(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+					position : "start",
+					autoPlayed : 0
+				    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameAdClicked', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+		},
+
+		async Upgrade_Event41_Act5(runtime, localVars)
+		{
+			if (typeof gameManager !== 'undefined' && 
+			typeof gameManager.onShowRewardedVideoAds === 'function'
+			
+			) {
+			
+			    try {
+			       cc.game.on('onAdPlayed', function(result){
+				   
+				     if (result.status === 0) {
+					 		
+					 runtime.globalVars.missileon += 1; 
+					  runtime.globalVars.adGameStartClaimed += 1; 
+			runtime.globalVars.adsound = 0; 
+			
+			if (typeof gameManager !== 'undefined') {
+			var data = gameManager.onGameInit()
+			 data = JSON.parse(data)
+			 
+			    var obj = {
+			       gameID: data.gameId,
+			        roomID: data.roomId,
+			        userID: data.userId,
+					position : "start",
+				autoPlayed : 0
+				    }
+			    try {
+			        var data = JSON.stringify(obj)
+			        gameManager.onTrack('gameAdClaimed', data)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+			
+			} else {
+			        // did not watch the ad completely. no reward
+				//runtime.globalVars.reward = runtime.globalVars.SCORE + 0;
+					 runtime.globalVars.missileon += 0; 
+					 runtime.globalVars.adsound = 0; 
+			    }
+				   
+				   })
+			        gameManager.onShowRewardedVideoAds('onAdPlayed', null)
+			    } catch (e) {
+			        gameManager.onError(e.stack.toString())
+			    }
+			}
+			
+		},
+
 		async Title_Event19_Act1(runtime, localVars)
 		{
 			if (typeof gameManager !== 'undefined') {
@@ -415,7 +507,7 @@
 			}
 		}
 
-	};
-	
-	self.C3.ScriptsInEvents = scriptsInEvents;
-}
+};
+
+self.C3.ScriptsInEvents = scriptsInEvents;
+
