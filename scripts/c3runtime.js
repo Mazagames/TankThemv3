@@ -5283,6 +5283,10 @@ self.C3_ExpressionFuncs = [
 		() => "sound",
 		() => -11,
 		() => -10,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(1, 2, 1);
+		},
 		() => "Layer 3",
 		() => "Layer 2",
 		() => "kill enemies and save the bunker",
